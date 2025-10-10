@@ -1,0 +1,7 @@
+[bindings.kotlin]
+package_name = "ch.michelon.crux_playground.component"
+cdylib_name = "component"
+
+[bindings.swift]
+cdylib_name = "component_ffi"
+omit_argument_labels = true

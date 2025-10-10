@@ -1,0 +1,23 @@
+[workspace]
+members = [
+    "application",
+    "component",
+    "uniffi-bindgen"
+]
+resolver = "1"
+
+[workspace.package]
+authors = ["Xavier Michelon"]
+edition = "2021"
+repository = "https://github.com/redbadger/crux/"
+license = "GPL-3.0-or-later"
+keywords = ["crux", "rust"]
+rust-version = "1.90"
+
+[workspace.dependencies]
+anyhow = "1.0.100"
+crux_core = "0.16.1"
+serde = "1.0.228"
+uniffi = "0.30.0"
+facet = "0.28.0"
+wasm-bindgen = "0.2.104"
