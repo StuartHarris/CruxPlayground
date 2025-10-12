@@ -1,16 +1,12 @@
-use crux_core::{
-    macros::effect,
-    render::{RenderOperation},
-    App, Command,
-};
+use component::{ComponentEvent, ComponentModel, ComponentViewModel};
+use crux_core::{macros::effect, render::RenderOperation, App, Command};
 use facet::Facet;
 use serde::{Deserialize, Serialize};
-use component::{ComponentEvent, ComponentModel, ComponentViewModel};
 
 #[derive(Clone, Debug, Serialize, Deserialize, Facet)]
 #[repr(C)]
 pub enum Event {
-    Component(ComponentEvent),
+    Component(#[facet(namespace = "component_crux")] ComponentEvent),
 }
 
 #[effect(facet_typegen)]
@@ -18,13 +14,14 @@ pub enum Effect {
     Render(RenderOperation),
 }
 
-#[derive(Default, Clone, Debug, Serialize, Deserialize, Facet)]
+#[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Model {
-    component: ComponentModel
+    component: ComponentModel,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Facet)]
 pub struct ViewModel {
+    #[facet(namespace = "component_crux")]
     component: ComponentViewModel,
     pub title: String,
 }

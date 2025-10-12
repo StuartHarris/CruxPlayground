@@ -1,8 +1,8 @@
 use std::path::Path;
 
 use anyhow::Result;
+use application::Application;
 use crux_core::type_generation::facet::{Config, ExternalPackage, PackageLocation, TypeRegistry};
-use application::{Application};
 
 fn main() -> Result<()> {
     let out_dir = Path::new(".");
@@ -19,18 +19,13 @@ fn application_crux(out_dir: &Path) -> Result<()> {
         &Config::builder("ApplicationCrux", out_dir.join("generated"))
             .reference(ExternalPackage {
                 for_namespace: "serde".to_string(),
-                location: PackageLocation::Path(
-                    "../Serde".to_string(),
-                ),
+                location: PackageLocation::Path("../Serde".to_string()),
                 module_name: None,
                 version: None,
             })
             .reference(ExternalPackage {
-                for_namespace: "component_types".to_string(),
-                location: PackageLocation::Path(
-                    "../ComponentCrux"
-                        .to_string(),
-                ),
+                for_namespace: "component_crux".to_string(),
+                location: PackageLocation::Path("../ComponentCrux".to_string()),
                 module_name: None,
                 version: None,
             })
