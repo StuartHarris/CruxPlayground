@@ -7,7 +7,6 @@ use facet::Facet;
 use serde::{Deserialize, Serialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize, Facet)]
-#[facet(namespace = "component_types")]
 #[repr(C)]
 pub enum ComponentEvent {
     Increment,
@@ -20,14 +19,12 @@ pub enum Effect {
     Render(RenderOperation),
 }
 
-#[derive(Default, Clone, Debug, Serialize, Deserialize, Facet)]
-#[facet(namespace = "component_types")]
+#[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct ComponentModel {
     count: isize,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Facet)]
-#[facet(namespace = "component_types")]
 pub struct ComponentViewModel {
     pub count: String,
 }

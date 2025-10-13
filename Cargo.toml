@@ -1,9 +1,5 @@
 [workspace]
-members = [
-    "application",
-    "component",
-    "uniffi-bindgen"
-]
+members = ["application", "component", "uniffi-bindgen"]
 resolver = "1"
 
 [workspace.package]
