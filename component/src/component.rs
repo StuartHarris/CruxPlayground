@@ -21,12 +21,17 @@ pub enum Effect {
 
 #[derive(Default, Clone, Debug, Serialize, Deserialize)]
 pub struct ComponentModel {
+    count: ComponentCounter,
+}
+
+#[derive(Default, Clone, Debug, Serialize, Deserialize, Facet)]
+pub struct ComponentCounter {
     count: isize,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, Facet)]
 pub struct ComponentViewModel {
-    pub count: String,
+    pub count: ComponentCounter,
 }
 
 #[derive(Default)]
@@ -46,9 +51,9 @@ impl App for Component {
         _caps: &(), // will be deprecated, so prefix with underscore for now
     ) -> Command<Effect, ComponentEvent> {
         match event {
-            ComponentEvent::Increment => model.count += 1,
-            ComponentEvent::Decrement => model.count -= 1,
-            ComponentEvent::Reset => model.count = 0,
+            ComponentEvent::Increment => model.count.count += 1,
+            ComponentEvent::Decrement => model.count.count -= 1,
+            ComponentEvent::Reset => model.count.count = 0,
         }
 
         render()
@@ -56,7 +61,7 @@ impl App for Component {
 
     fn view(&self, model: &Self::Model) -> Self::ViewModel {
         ComponentViewModel {
-            count: format!("Count is: {}", model.count),
+            count: model.count.clone(),
         }
     }
 }
